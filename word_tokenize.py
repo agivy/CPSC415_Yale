@@ -5,20 +5,6 @@ import nltk
 from typing import List, Dict, Set
 import time
 
-# def download_documents(url1: str, url2: str) -> List[str]:
-#     """Download documents from URLs and create corpus"""
-#     texts = []
-#     for url in [url1, url2]:
-#         print(f"\nDownloading document from {url}...")
-#         try:
-#             response = requests.get(url)
-#             response.raise_for_status()
-#             texts.append(response.text)
-#         except requests.RequestException as e:
-#             print(f"Error downloading from {url}: {e}")
-#             return None
-#     return texts
-
 def download_documents(url1: str, file2_path: str) -> List[str]:
     """Download the first document from URL and load the second document from a file"""
     texts = []
@@ -207,45 +193,6 @@ def process_document(text: str, vocab: List[str], tokenizer) -> Dict:
         'text_length': len(text),
         'token_count': len(tokenized_text)
     }
-
-# def analyze_documents(url1: str, url2: str, vocab_size: int = 70) -> Dict:
-#     """Process documents and analyze their tokenization"""
-#     # Download documents
-#     texts = download_documents(url1, url2)
-#     if not texts:
-#         return None
-        
-#     # Train tokenizer on both documents
-#     vocab, tokenizer = train_tokenizer(texts, vocab_size)
-    
-#     # Process each document
-#     results = []
-#     for i, text in enumerate(texts, 1):
-#         print(f"\nProcessing document {i}...")
-#         result = process_document(text, vocab, tokenizer)
-#         results.append(result)
-#         print(f"Tokenized document {i} into {result['token_count']} tokens")
-
-#     # Compute comparative statistics
-#     text1_set = set(results[0]['tokenized_text'])
-#     text2_set = set(results[1]['tokenized_text'])
-#     tokenized_intersection = text1_set.intersection(text2_set)
-#     exclusive_doc1_tokenized = text1_set - text2_set
-#     exclusive_doc2_tokenized = text2_set - text1_set
-
-#     return {
-#         'vocab': set(vocab),
-#         'doc1_results': results[0],
-#         'doc2_results': results[1],
-#         'tokenized_intersection': tokenized_intersection,
-#         'exclusive_doc1_tokenized': exclusive_doc1_tokenized,
-#         'exclusive_doc2_tokenized': exclusive_doc2_tokenized,
-#         'comparative_stats': {
-#             'common_tokenized': len(tokenized_intersection),
-#             'exclusive_doc1_tokenized': len(exclusive_doc1_tokenized),
-#             'exclusive_doc2_tokenized': len(exclusive_doc2_tokenized)
-#         }
-#     }
 
 def analyze_documents(url1: str, file2_path: str, vocab_size: int = 70) -> Dict:
     """Process documents and analyze their tokenization"""
